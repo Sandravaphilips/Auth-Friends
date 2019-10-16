@@ -2,6 +2,23 @@ import React from 'react';
 import { Route, NavLink, withRouter, Redirect } from 'react-router-dom';
 import Login from "./components/Login";
 import FriendsList from "./components/FriendsList";
+import styled from 'styled-components';
+
+const AppStyle = styled.div`
+  padding: 10px;
+
+  nav{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+
+    span{
+      display: flex; 
+      justify-content: space-between;
+      width: 40%;
+    }
+  }
+`
 
 function App(props) {
   const onLogout = () => {
@@ -11,7 +28,7 @@ function App(props) {
   };
 
   return (
-    <div>
+    <AppStyle>
       <nav>
         <span>
           <NavLink exact to='/'>Login</NavLink>
@@ -34,7 +51,7 @@ function App(props) {
           render={props => withAthCheck(FriendsList, props)}
         />
       </main>
-    </div>
+    </AppStyle>
   );
 }
 

@@ -1,5 +1,34 @@
 import React, {useState} from 'react';
 import withAuth from '../axios';
+import styled from 'styled-components';
+
+const FormStyle = styled.form`
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    /* align-items: center; */
+
+    
+
+    label input{
+        width: 300px;
+        height: 30px;
+        border-radius: 8px;
+
+    }
+    >input{
+        width: 10%;
+        height: 30px;
+        margin-left: 7%;
+        border-radius: 7px;
+        border: none;
+
+        &:hover{
+            background-color: black;
+            color: white;
+        }
+    }
+`
 
 const initialFriendForm = {
     name: '',
@@ -49,7 +78,7 @@ export default function AddFriend() {
         .catch(err=> console.log(err))
     }
     return (
-        <form onSubmit={onFormSubmit}>
+        <FormStyle onSubmit={onFormSubmit}>
             <label>Name
                 <input onChange={onNameChange} value={friendForm.name} name='name' />
             </label><br />
@@ -63,6 +92,6 @@ export default function AddFriend() {
             </label><br />
 
             <input type='submit' />
-        </form>
+        </FormStyle>
     )
 }
