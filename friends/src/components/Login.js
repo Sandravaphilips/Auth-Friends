@@ -12,7 +12,7 @@ export default function Login(props) {
     })
     .then(res => {
     localStorage.setItem('token', res.data.token)
-    props.history.push('/quotes');
+    props.history.push('/friends');
     })
     .catch(error => {
     alert(error.response.data.message);
@@ -20,8 +20,8 @@ export default function Login(props) {
   };
 
   return (
-    <div className='login'>
-      <div className='login-inputs'>
+    <div>
+      <div>
         username <input ref={usernameRef} type="text" />
         <br />
         password <input ref={passwordRef} type="text" />
