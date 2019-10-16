@@ -1,26 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, NavLink, withRouter, Redirect } from 'react-router-dom';
+import Login from "./components/Login";
+import FriendsList from "./components/FriendsList";
 
-function App() {
+function App(props) {
+  const onLogout = () => {
+    localStorage.clear();
+    
+    props.history.replace('/');
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <nav>
+        <span>
+          <NavLink exact to='/'>Login</NavLink>
+          <NavLink to='/friends'>List of Friends</NavLink>
+        </span>
+
+        <button onClick={onLogout}>Logout</button>
+      </nav>
+
+      <main>
+        <Route
+          exact
+          path='/'
+          component={Login}
+        />
+
+        <Route
+          exact
+          path='/friends'
+          render={props => withAthCheck(FriendsList, props)}
+        />
+      </main>
     </div>
   );
 }
 
-export default App;
+
+
+
+function withAthCheck(Component, props) {
+  if (localStorage.getItem('token')) {
+    return <Component {...props} />
+  }
+  return <Redirect to='/' />;
+}
+
+export default withRouter(App);
+

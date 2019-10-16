@@ -6,7 +6,7 @@ import Friend from './Friend';
 export default function FriendsList() {
     const [friends, setFriends] = useState([])
     useEffect(() => {
-        withAuth().get('/api/friends')
+        withAuth().get('http://localhost:5000/api/friends')
         .then(response=> {
             setFriends(response.data)
         })
