@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import withAuth from '../axios';
 import Friend from './Friend';
+import AddFriend from './AddFriend';
 
 
 export default function FriendsList() {
@@ -15,9 +16,12 @@ export default function FriendsList() {
 
     return (
         <div>
-            {friends.map(friend => 
-                <Friend key={friend.id} friend={friend}/>
-            )}
+            <AddFriend />
+            <div>
+                {friends.map(friend => 
+                    <Friend key={friend.id} friend={friend}/>
+                )}
+            </div> 
         </div>
     )
 }
